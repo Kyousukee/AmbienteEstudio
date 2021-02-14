@@ -128,83 +128,84 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
    if(isset($_POST['btn_actualizar'])){
     if($modificar!=""){
     //recibo datos
-    $idproveedor  = trim($_POST['txtidproveedor']);  
+    $IdEsta= trim($_POST['txtidecta']);
     $identificador= trim($_POST['txtidentificador']);
     $descripcion  = trim(strtoupper($_POST['txtdescripcion']));
-    $contacto     = trim($_POST['txtcontacto']);
     $telefono     = trim($_POST['txttelefono']);
     $email        = trim($_POST['txtemail']);
     $estado       = trim($_POST['cboestado']);
     $direccion    = trim($_POST['txtdireccion']);
+    $basica        = trim($_POST['cbobasica']);
+    $media       = trim($_POST['cbomedia']);
+    $kinder    = trim($_POST['cbokinder']);
+    $FechaActual =  date('d-m-Y');
  
     //DECLARO VARIABLES PARA ERRORES
         
      $ERROR ="Se encontraron los siguientes errores:\\\n";
      $CAN_ER = 0;
 
-     if($idproveedor=="" OR $idproveedor==undefined){
-         $ERROR=$ERROR."No se esta editando ningun registro \\\n";
-         $CAN_ER=$CAN_ER+1;
-     }
-
-     $queryIdentificador = "SELECT IdProveedor FROM m_proveedor WHERE Identificador='".$identificador."' AND IdProveedor!='".$idproveedor."'";
      
-     if($c->buscarRegistro($queryIdentificador)==true){
-         $ERROR=$ERROR."Este identificador de proveedor ya se encuentra registrado ".$queryIdentificador." \\\n";
-         $CAN_ER=$CAN_ER+1;
-     }
 
-     if($identificador=="" OR $identificador==undefined){
+     if($identificador=="" OR $identificador=='undefined'){
          $ERROR=$ERROR."Debe ingresar una identificador \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
-     $queryDescripcion = "SELECT IdProveedor FROM m_proveedor WHERE Descripcion='".$descripcion."' AND IdProveedor!='".$idproveedor."'";
      
-     if($c->buscarRegistro($queryDescripcion)==true){
-         $ERROR=$ERROR."Esta descripcion de proveedor ya se encuentra registrada \\\n";
-         $CAN_ER=$CAN_ER+1;
-     }
  
-     if($descripcion=="" OR $descripcion==undefined){
+     if($descripcion=="" OR $descripcion=='undefined'){
          $ERROR=$ERROR."Debe ingresar una descripcion \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
-     if($contacto=="" OR $contacto==undefined){
-         $ERROR=$ERROR."Debe ingresar una contacto \\\n";
-         $CAN_ER=$CAN_ER+1;
-     }
 
-     if($telefono=="" OR $telefono==undefined){
+     if($telefono=="" OR $telefono=='undefined'){
          $ERROR=$ERROR."Debe ingresar una telefono \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($c->comprobar_email($email)=="0"){
-         $ERROR=$ERROR."Debe ingresar un email valido\\\n";
+         $ERROR=$ERROR."Debe ingresar un email valido \\\n";
          $CAN_ER=$CAN_ER+1;
      }
  
-     if($estado=="" OR $estado=="0" OR $estado==undefined){
+     if($estado=="" OR $estado=="0" OR $estado=='undefined'){
          $ERROR=$ERROR."Debe seleccionar un estado \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
-     if($direccion=="" OR $direccion==undefined){
+     if($basica=="" OR $basica=="2" OR $basica=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Basica \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     if($media=="" OR $media=="2" OR $media=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Media \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     if($kinder=="" OR $kinder=="2" OR $kinder=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Pre y/o Kinder \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+
+
+     if($direccion=="" OR $direccion=='undefined'){
          $ERROR=$ERROR."Debe ingresar una direccion \\\n";
          $CAN_ER=$CAN_ER+1;
      }
  
      if ($CAN_ER=="0"){
-         $queryActualizar = "UPDATE  m_proveedor SET  
-                           Identificador='".$identificador."', Descripcion='".$descripcion."', 
-                           Contacto='".$contacto."', Telefono='".$telefono."', 
-                           Email= '".$email."', Estado='".$estado."', Direccion='".$direccion."' 
-                           WHERE IdProveedor='".$idproveedor."'";
+         $queryActualizar = "UPDATE  establecimiento SET  
+                           rut_esta='".$identificador."', descr_esta='".$descripcion."', 
+                           fon_esta='".$telefono."', 
+                           email_esta= '".$email."', Est_esta='".$estado."', dire_esta='".$direccion."',Bas_esta='".$basica."',Med_esta='".$media."',Kin_esta='".$kinder."'  
+                           WHERE id_esta='".$IdEsta."'";
     
           if($c->ejecutarConsulta($queryActualizar)==true){
-            $c->insertarLog($COD_USU,"m_proveedor","IdProveedor","IdProveedor","UPDATE",$idproveedor);
+            $c->insertarLog($COD_USU,"establecimiento","id_esta","id_esta","UPDATE",$IdEsta);
              echo "Registro actualizado";
           }else{
              echo "Ocurrior un error al actualizar el registro";
@@ -264,8 +265,8 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
 
    /*INICIO DEL DEL TRAER PROVEEDOR*/
    if(isset($_POST['btn_editar'])){
-    $IdProveedor = trim($_POST['IdProveedor']);
-    $query= "SELECT * FROM m_proveedor WHERE IdProveedor='".$IdProveedor."'";
+    $IdEsta = trim($_POST['IdEsta']);
+    $query= "SELECT * FROM establecimiento WHERE id_esta='".$IdEsta."'";
     echo $c->retornarJSON($query);
     }
    /*FIN DEL TRAER PROVEEDOR*/

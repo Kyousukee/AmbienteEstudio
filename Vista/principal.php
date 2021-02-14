@@ -39,7 +39,7 @@ error_reporting(0);
     <link href="css/elegant-icons-style.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
+    
     <link href="css/style-responsive.css" rel="stylesheet" />
     
     <!-- javascripts -->
@@ -51,10 +51,16 @@ error_reporting(0);
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
     <script src="js/scripts.js"></script><!--Menu-->
     <script src="js/angular1.3.14.min.js"></script>
-    <script src="ckeditor/ckeditor.js"></script>
-    <!--Ultimo estilo-->
+    
+    <!--Ultimo estilo
     <link href="css/estilo.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet">
+    <script src="ckeditor/ckeditor.js"></script>
+  -->
+    
     <link href="css/chk.css" rel="stylesheet" />
+    <link href="css/boxicons.min.css" rel="stylesheet" />
+     <link href="css/boxicons.css" rel="stylesheet" />
 
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
@@ -140,7 +146,7 @@ function onClick(element) {
             ?>
              <script>
              alert('Debe iniciar sesión para ingresar a esta página.');
-             window.location.href='../login.php';
+             window.location.href='../Home.php';
              </script>
             <?php
   }

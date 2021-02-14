@@ -24,10 +24,13 @@
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			 })	  
 		 .success(function(data) {
-		 	console.log(data);
-			 if(data[0][0].trim()!="s"){
-				$scope.estaLst = data;
-			 }		   
+		 	//console.log(data);
+			 		
+			 if (!angular.isObject(data)){
+					$scope.estaLst = "";
+				}else{
+			 		$scope.estaLst = data;
+				}	   
 		 })
 		 }
 
@@ -65,23 +68,28 @@
 		/*FIN DE FUNCION DE INGRESAR PROVEEDOR*/
 
 		/*INICIO DE FUNCION QUE TRAE PROVEEDOR*/
-		self.proveedorFormEdi = function(IdProveedor){
-			var form_data ="btn_editar=0&IdProveedor="+IdProveedor+"";
+		self.proveedorFormEdi = function(IdEsta){
+			var form_data ="btn_editar=0&IdEsta="+IdEsta+"";
 			$http({
 			  method: 'POST',
-			  url: '../Controlador/proveedor.php',
+			  url: '../Controlador/mantenedorestablecimiento.php',
 			  data: form_data,
 			  headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				})	  
 			.success(function(data) {
-				$scope.angCtrl.txtidproveedor  =data[0].IdProveedor;
-				$scope.angCtrl.txtidentificador=data[0].Identificador;
-				$scope.angCtrl.txtdescripcion  =data[0].Descripcion;
-		        $scope.angCtrl.txtcontacto     =data[0].Contacto;
-		        $scope.angCtrl.txttelefono     =data[0].Telefono;
-		        $scope.angCtrl.txtemail        =data[0].Email;
-			    $scope.angCtrl.cboestado       =data[0].Estado;
-			    $scope.angCtrl.txtdireccion    =data[0].Direccion;			    
+
+				$scope.angCtrl.txtidestablecimiento  =data[0].id_esta;
+				$scope.angCtrl.txtidentificador=data[0].rut_esta;
+				$scope.angCtrl.txtdescripcion  =data[0].descr_esta;
+		        $scope.angCtrl.txttelefono     =data[0].fon_esta;		        
+		        $scope.angCtrl.txtemail        =data[0].email_esta;
+
+			    $scope.angCtrl.cboestado       =data[0].Est_esta;
+			    $scope.angCtrl.cbokinder       =data[0].Kin_esta;
+			    $scope.angCtrl.cbomedia       =data[0].Med_esta;
+			    $scope.angCtrl.cbobasica       =data[0].Bas_esta;
+
+			    $scope.angCtrl.txtdireccion    =data[0].dire_esta;			    
 				$scope.readonly                =true;
 				$scope.actualizar_readonly     =false;
 				$scope.grabar_readonly         =true;
@@ -95,11 +103,12 @@
 
 		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
 		self.proveedorFormAct = function() {
-			var form_data = 'txtidproveedor='+self.txtidproveedor+'&txtidentificador='+self.txtidentificador+'&txtdescripcion='+self.txtdescripcion+'&txtcontacto='+self.txtcontacto+'&txttelefono='+self.txttelefono+
-			'&txtemail='+self.txtemail+'&cboestado='+self.cboestado+'&txtdireccion='+self.txtdireccion+'&btn_actualizar=0';
+			var form_data = 'txtidentificador='+self.txtidentificador+'&txtdescripcion='+self.txtdescripcion+'&txttelefono='+self.txttelefono+'&txtemail='+self.txtemail+'&cboestado='+self.cboestado+
+			'&cbobasica='+self.cbobasica+'&cbomedia='+self.cbomedia+'&cbokinder='+self.cbokinder+'&txtidecta='+self.txtidestablecimiento+
+			'&txtdireccion='+self.txtdireccion+'&btn_actualizar=0';
 			$http({
 					  method: 'POST',
-					  url: '../Controlador/proveedor.php',
+					  url: '../Controlador/mantenedorestablecimiento.php',
 					  data: form_data,
 					   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 					 })

@@ -13,7 +13,7 @@ if($inactividad==1){
 }else{
              ?>
              <script>
-            window.location.href='../login.php';
+            window.location.href='../Home.php';
              </script>
              <?php
 }

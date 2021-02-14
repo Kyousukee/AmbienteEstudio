@@ -17,7 +17,7 @@
                                           <input type="text" class="form-control" id="txtbuscar" name="txtbuscar"  ng-model="angCtrl.txtbuscar" ng-change="angCtrl.ListadoEstablecimiento()">
                                       </div>
                                       <div class="col-sm-2">
-                                          <input type="hidden" class="form-control" id="txtidproveedor" name="txtidproveedor" ng-model="angCtrl.txtidproveedor">
+                                          <input type="hidden" class="form-control" id="txtidestablecimiento" name="txtidestablecimiento" ng-model="angCtrl.txtidestablecimiento">
                                       </div>
                                   </div>
 
@@ -141,7 +141,7 @@
                                   <td>{{s.Basica}}</td>
                                   <td>{{s.Media}}</td>
                                   <td>{{s.Est_esta}}</td>
-                                  <td><button class="btn btn-primary" ng-click="angCtrl.proveedorFormEdi(s.IdProveedor)"><i class="icon_pencil"></i></button></td>
+                                  <td><button class="btn btn-primary" ng-click="angCtrl.proveedorFormEdi(s.id_esta)"><i class='bx bx-edit-alt'></i></button></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -151,7 +151,7 @@
                   </div>
               </div>      
      <!-- page end-->
-      <!-- Modal Email -->
+      <!-- Modal Email 
   <div class="container">
     <div class="modal fade" id="modal_email" role="document">
       <div class="modal-dialog">
@@ -200,7 +200,7 @@
                     <td>{{em.Email}}</td>
                     <td align="center">
                       <button class="btn btn-danger" style="width: 30px; height: 30px;" ng-click="angCtrl.eliminarEmail(em.IdProEm)">
-                        <img src="img/eliminar0.png" style="    width: 20px; height: 20px; margin-left: -8px; margin-top: -7px;">
+                        <img src="" style="    width: 20px; height: 20px; margin-left: -8px; margin-top: -7px;">
                       </button>
                     </td>
                   </tr>
@@ -216,7 +216,7 @@
       </div>
     </div>
   </div>
-  <!-- Modal Email -->
+  Modal Email -->
 
 </section>
 

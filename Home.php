@@ -7,12 +7,127 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="Vista/js/angular1.3.14.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
 
 body {font-family: "Times New Roman", Georgia, Serif;}
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display";
   letter-spacing: 5px;
+}
+</style>
+<style>
+
+.modal-login {
+  width: 350px;
+}
+.modal-login .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+.modal-login .modal-header {
+  border-bottom: none;
+  position: relative;
+  justify-content: center;
+}
+.modal-login .close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+.modal-login h4 {
+  color: #636363;
+  text-align: center;
+  font-size: 26px;
+  margin-top: 0;
+}
+.modal-login .modal-content {
+  color: #999;
+  border-radius: 1px;
+  margin-bottom: 15px;
+  background: #fff;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 25px;
+}
+.modal-login .form-group {
+  margin-bottom: 20px;
+}
+.modal-login label {
+  font-weight: normal;
+  font-size: 13px;
+}
+.modal-login .form-control {
+  min-height: 38px;
+  padding-left: 5px;
+  box-shadow: none !important;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+}
+.modal-login .form-control:focus {
+  border-color: #ccc;
+}
+.modal-login .input-group-addon {
+  max-width: 42px;
+  text-align: center;
+  background: none;
+  border-bottom: 1px solid #ced4da;
+  padding-right: 5px;
+  border-radius: 0;
+}
+.modal-login .btn, .modal-login .btn:active {        
+  font-size: 16px;
+  font-weight: bold;
+  background: #19aa8d !important;
+  border-radius: 3px;
+  border: none;
+  min-width: 140px;
+}
+.modal-login .btn:hover, .modal-login .btn:focus {
+  background: #179b81 !important;
+}
+.modal-login .hint-text {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 13px;
+}
+.modal-login .modal-footer {
+  color: #999;
+  border-color: #dee4e7;
+  text-align: center;
+  margin: 0 -25px -25px;
+  font-size: 13px;
+  justify-content: center;
+}
+.modal-login a {
+  color: #fff;
+  text-decoration: underline;
+}
+.modal-login a:hover {
+  text-decoration: none;
+}
+.modal-login a {
+  color: #19aa8d;
+  text-decoration: none;
+} 
+.modal-login a:hover {
+  text-decoration: underline;
+}
+.modal-login .fa {
+  font-size: 21px;
+  position: relative;
+  top: 6px;
+}
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
 }
 </style>
 <body>
@@ -30,13 +145,84 @@ h1, h2, h3, h4, h5, h6 {
       <a href="#contact" class="w3-bar-item w3-button" style="font-family: Arial;
     color: aliceblue;">Contacto</a>
 
-      <a href="login.php" class="w3-bar-item w3-button w3-right" style="font-family: Arial;
+      <a href="#myModal" data-toggle="modal" class="w3-bar-item w3-button w3-right" style="font-family: Arial;
     color: aliceblue;    background-color: black;"><img src="Vista/Img/login.png" style="width: 25px;
     height: 25px;
     margin-right: 3px;">Inicio de Sesion</a>
 
+    
   </div>
 </div>
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog modal-login" ng-app="AngularJSLogin" ng-controller="AngularLoginController as angCtrl">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <h4 class="modal-title">INICIO SESION</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body" >
+        <form ng-submit="angCtrl.loginForm()"  method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="username" placeholder="RUT (Sin guion o puntos)" ng-model="angCtrl.txtrut" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" name="password" ng-model="angCtrl.password"  placeholder="Contraseña" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">INGRESAR</button>
+          </div>
+          <div class="alert alert-danger" ng-show="errorMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"  ng-click="angCtrl.Ocultar()">×</button>
+                <span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;{{errorMsg}}
+            </div>
+
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div> 
+
+<script>
+    angular.module('AngularJSLogin', [])
+  .controller('AngularLoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+   var self = this;
+          
+
+        self.loginForm = function() {
+            console.log('Hola');
+            var user_data='txtusuario='+this.txtrut+'&txtclave='+this.password;
+      console.log(user_data);
+            $http({
+                method: 'POST',
+                url: 'indexlogin.php',
+                data: user_data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+            .success(function(data) {
+        console.log(data);
+                if ( data.trim() === 'correct') {
+                    window.location.href = 'Vista/principal.php';
+                } else {
+                    $scope.errorMsg = "Rut o Clave invalidos";
+                }
+            })
+        }
+
+        self.Ocultar = function() {
+            $scope.errorMsg = false;
+        }
+
+    }]);
+    </script>
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
