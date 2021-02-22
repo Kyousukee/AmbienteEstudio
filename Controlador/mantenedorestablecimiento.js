@@ -43,7 +43,7 @@
         /*INICIO DE FUNCION DE INGRESAR PROVEEDOR*/
 		self.estaFormIng = function() {
 			var form_data = 'txtidentificador='+self.txtidentificador+'&txtdescripcion='+self.txtdescripcion+'&txttelefono='+self.txttelefono+'&txtemail='+self.txtemail+'&cboestado='+self.cboestado+
-			'&cbobasica='+self.cbobasica+'&cbomedia='+self.cbomedia+'&cbokinder='+self.cbokinder+
+			'&cbobasica='+self.cbobasica+'&cbomedia='+self.cbomedia+'&cbokinder='+self.cbokinder+'&txtusuario='+self.txtusuario+
 			'&txtdireccion='+self.txtdireccion+'&btn_grabar=0';
 	 
 				$http({
@@ -89,7 +89,8 @@
 			    $scope.angCtrl.cbomedia       =data[0].Med_esta;
 			    $scope.angCtrl.cbobasica       =data[0].Bas_esta;
 
-			    $scope.angCtrl.txtdireccion    =data[0].dire_esta;			    
+			    $scope.angCtrl.txtdireccion    =data[0].dire_esta;	
+			    $scope.angCtrl.txtusuario    =data[0].usu_esta;			    
 				$scope.readonly                =true;
 				$scope.actualizar_readonly     =false;
 				$scope.grabar_readonly         =true;
@@ -104,7 +105,7 @@
 		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
 		self.proveedorFormAct = function() {
 			var form_data = 'txtidentificador='+self.txtidentificador+'&txtdescripcion='+self.txtdescripcion+'&txttelefono='+self.txttelefono+'&txtemail='+self.txtemail+'&cboestado='+self.cboestado+
-			'&cbobasica='+self.cbobasica+'&cbomedia='+self.cbomedia+'&cbokinder='+self.cbokinder+'&txtidecta='+self.txtidestablecimiento+
+			'&cbobasica='+self.cbobasica+'&cbomedia='+self.cbomedia+'&cbokinder='+self.cbokinder+'&txtidecta='+self.txtidestablecimiento+'&txtusuario='+self.txtusuario+
 			'&txtdireccion='+self.txtdireccion+'&btn_actualizar=0';
 			$http({
 					  method: 'POST',

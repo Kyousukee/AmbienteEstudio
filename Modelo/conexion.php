@@ -96,7 +96,7 @@ function cargarMenu($IdUsuario){
             onclick='w3_close()' class='w3-bar-item w3-button w3-hover-white'>INICIO</a>";
 
       $this->conexion();
-      $this->consulta = "SELECT a.desc_pd As Descripcion, a.ruta_pd As Ruta FROM pantallasdetalle a
+      $this->consulta = "SELECT DISTINCT a.desc_pd As Descripcion, a.ruta_pd As Ruta FROM pantallasdetalle a
                 INNER JOIN pantallasdetalleusuarios b ON b.id_pdet=a.id_pd
                 INNER JOIN usuarios c ON c.id_tip=b.id_usu
                 WHERE a.est_pd='A' AND c.est_usu='A' AND c.id_tip='".$IdUsuario."';";

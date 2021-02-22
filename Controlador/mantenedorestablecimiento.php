@@ -36,6 +36,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
     $basica        = trim($_POST['cbobasica']);
     $media       = trim($_POST['cbomedia']);
     $kinder    = trim($_POST['cbokinder']);
+    $usuario    = trim($_POST['txtusuario']);
     $FechaActual =  date('d-m-Y');
  
     //DECLARO VARIABLES PARA ERRORES
@@ -47,6 +48,20 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
      
      if($c->buscarRegistro($queryIdentificador)==true){
          $ERROR=$ERROR."Este identificador de Establecimiento ya se encuentra registrado \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     $queryIdentificador = "SELECT id_esta FROM establecimiento WHERE usu_esta='".$usuario."'";
+     
+     if($c->buscarRegistro($queryIdentificador)==true){
+         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado en otro establecimiento\\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     $queryIdentificador = "SELECT id_usu FROM usuarios WHERE log_usu='".$usuario."'";
+     
+     if($c->buscarRegistro($queryIdentificador)==true){
+         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado como usuario en este sisema.\\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
@@ -106,10 +121,15 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
      }
  
      if ($CAN_ER=="0"){
-      $queryInsertar = "INSERT INTO establecimiento(rut_esta, descr_esta, fon_esta, email_esta, Est_esta, Bas_esta, Med_esta, feccre_esta, usucrec_esta, Kin_esta, dire_esta) VALUES ('".$identificador."','".$descripcion."','".$telefono."','".$email."','".$estado."','".$basica."','".$media."','".$FechaActual."','".$COD_USU."','".$kinder."','".$direccion."');";
+      $queryInsertar = "INSERT INTO establecimiento(rut_esta, descr_esta, fon_esta, email_esta, Est_esta, Bas_esta, Med_esta, feccre_esta, usucrec_esta, Kin_esta, dire_esta,usu_esta) VALUES ('".$identificador."','".$descripcion."','".$telefono."','".$email."','".$estado."','".$basica."','".$media."','".$FechaActual."','".$COD_USU."','".$kinder."','".$direccion."','".$usuario."');";
+
+
+      
+     
  
        if($c->ejecutarConsulta($queryInsertar)==true){
           $c->insertarLog($COD_USU,"establecimiento","id_esta","id_esta","INSERT","");
+          $c->ejecutarConsulta("INSERT INTO usuarios (log_usu, pass_usu, id_tip, est_usu, feccre_usu, usucre_usu) values ('".$usuario."','123456',2,'A',now(),'".$COD_USU."');");
           echo "Registro almacenado";
        }else{
           echo "Ocurrior un error al guardar el registro";
@@ -137,6 +157,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
     $direccion    = trim($_POST['txtdireccion']);
     $basica        = trim($_POST['cbobasica']);
     $media       = trim($_POST['cbomedia']);
+    $usuario       = trim($_POST['txtusuario']);
     $kinder    = trim($_POST['cbokinder']);
     $FechaActual =  date('d-m-Y');
  
@@ -201,12 +222,22 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
          $queryActualizar = "UPDATE  establecimiento SET  
                            rut_esta='".$identificador."', descr_esta='".$descripcion."', 
                            fon_esta='".$telefono."', 
-                           email_esta= '".$email."', Est_esta='".$estado."', dire_esta='".$direccion."',Bas_esta='".$basica."',Med_esta='".$media."',Kin_esta='".$kinder."'  
+                           email_esta= '".$email."', Est_esta='".$estado."', dire_esta='".$direccion."',Bas_esta='".$basica."',Med_esta='".$media."',Kin_esta='".$kinder."',usu_esta='".$usuario."'   
                            WHERE id_esta='".$IdEsta."'";
+
+
+        $queryusuario = "SELECT usu_esta FROM establecimiento WHERE id_esta='".$IdEsta."'";
+     
+        $usuarionuevo = $c->retornarRegistro($queryusuario,"usu_esta");
     
           if($c->ejecutarConsulta($queryActualizar)==true){
+            if ($usuario!=$usuarionuevo) {
+              $c->ejecutarConsulta("delete from usuarios where log_usu='".$usuarionuevo."';");
+              $c->ejecutarConsulta("INSERT INTO usuarios (log_usu, pass_usu, id_tip, est_usu, feccre_usu, usucre_usu) values ('".$usuario."','123456',2,'A',now(),'".$COD_USU."');");
+            }
+
             $c->insertarLog($COD_USU,"establecimiento","id_esta","id_esta","UPDATE",$IdEsta);
-             echo "Registro actualizado";
+             echo "Registro Actualizado.";
           }else{
              echo "Ocurrior un error al actualizar el registro";
           }

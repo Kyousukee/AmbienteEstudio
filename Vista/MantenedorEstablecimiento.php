@@ -95,6 +95,15 @@
                                   </div>
 
                                   <div class="form-group">
+                                    <label class="col-sm-2 control-label">RUT de Usuario</label>
+                                      <div class="col-sm-3">
+                                          <input type="text" placeholder="Es obligatorio..." maxlength="200" class="form-control" id="txtusuario" name="txtusuario"  ng-model="angCtrl.txtusuario">
+                                          
+                                      </div>
+                                      
+                                  </div>
+
+                                  <div class="form-group">
                                       <div class="col-sm-12">
                                       <input  type="submit" name="btn_grabar" id="btn_grabar" value="Grabar" title="Grabar" class="btn btn-primary" ng-click="angCtrl.estaFormIng()" ng-disabled="grabar_readonly">&nbsp;&nbsp;
                                       <input  type="submit" name="btn_actualizar" id="btn_actualizar" value="Actualizar" title="Actualizar" class="btn btn-primary" ng-click="angCtrl.proveedorFormAct()" ng-disabled="actualizar_readonly">&nbsp;&nbsp;
