@@ -61,11 +61,28 @@
 					messageOfData = messageOfData.trim().replace("\\", "");
 					i++;
 					}			  
-					alert(messageOfData);
+					
+					
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			document.getElementById("modal_error").style.display = "block";
+			 		}else{
+			 			alert(messageOfData);
+			 		}
+
 					$scope.LstPro();
 				})
 			}
 		/*FIN DE FUNCION DE INGRESAR PROVEEDOR*/
+
+
 
 		/*INICIO DE FUNCION QUE TRAE PROVEEDOR*/
 		self.proveedorFormEdi = function(IdEsta){
