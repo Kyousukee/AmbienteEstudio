@@ -111,6 +111,8 @@ error_reporting(0);
  
 </div>
 
+
+
 <!-- W3.CSS Container -->
 
 
@@ -156,7 +158,16 @@ document.getElementById("botoncerrar").onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == document.getElementById("modal_error")) {
+  if (event.target == document.getElementById("modal_error") || event.target == document.getElementById("modal_correc")) {
     document.getElementById("modal_error").style.display = "none";
+    document.getElementById("modal_correc").style.display = "none";
   }
-}</script>
+}
+
+  document.getElementById("botoncerrar2").onclick = function() {
+  
+  document.getElementById("modal_correc").style.display = "none";
+}
+
+
+</script>

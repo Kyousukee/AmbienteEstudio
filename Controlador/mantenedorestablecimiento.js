@@ -72,9 +72,12 @@
 			 		if (posicion0 !== -1){
 			 			//$("#modal_error").modal("show");
 			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
 			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
 			 		}else{
-			 			alert(messageOfData);
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
 			 		}
 
 					$scope.LstPro();

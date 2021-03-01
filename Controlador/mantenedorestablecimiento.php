@@ -47,76 +47,76 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
      $queryIdentificador = "SELECT id_esta FROM establecimiento WHERE rut_esta='".$identificador."'";
      
      if($c->buscarRegistro($queryIdentificador)==true){
-         $ERROR=$ERROR."Este identificador de Establecimiento ya se encuentra registrado \\\n";
+         $ERROR=$ERROR."Este identificador de Establecimiento ya se encuentra registrado.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      $queryIdentificador = "SELECT id_esta FROM establecimiento WHERE usu_esta='".$usuario."'";
      
      if($c->buscarRegistro($queryIdentificador)==true){
-         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado en otro establecimiento\\\n";
+         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado en otro establecimiento.-\\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      $queryIdentificador = "SELECT id_usu FROM usuarios WHERE log_usu='".$usuario."'";
      
      if($c->buscarRegistro($queryIdentificador)==true){
-         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado como usuario en este sisema.\\\n";
+         $ERROR=$ERROR."Este usuario de Establecimiento ya se encuentra registrado como usuario en este sisema.-\\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($identificador=="" OR $identificador=='undefined'){
-         $ERROR=$ERROR."Debe ingresar una identificador \\\n";
+         $ERROR=$ERROR."Debe ingresar una identificador.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      $queryDescripcion = "SELECT id_esta FROM establecimiento WHERE descr_esta='".$descripcion."'";
      
      if($c->buscarRegistro($queryDescripcion)==true){
-         $ERROR=$ERROR."Esta descripcion de Establecimiento ya se encuentra registrada \\\n";
+         $ERROR=$ERROR."Esta descripcion de Establecimiento ya se encuentra registrada.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
  
      if($descripcion=="" OR $descripcion=='undefined'){
-         $ERROR=$ERROR."Debe ingresar una descripcion \\\n";
+         $ERROR=$ERROR."Debe ingresar una descripcion.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
 
      if($telefono=="" OR $telefono=='undefined'){
-         $ERROR=$ERROR."Debe ingresar una telefono \\\n";
+         $ERROR=$ERROR."Debe ingresar una telefono.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($c->comprobar_email($email)=="0"){
-         $ERROR=$ERROR."Debe ingresar un email valido \\\n";
+         $ERROR=$ERROR."Debe ingresar un email valido.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
  
      if($estado=="" OR $estado=="0" OR $estado=='undefined'){
-         $ERROR=$ERROR."Debe seleccionar un estado \\\n";
+         $ERROR=$ERROR."Debe seleccionar un estado.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($basica=="" OR $basica=="2" OR $basica=='undefined'){
-         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Basica \\\n";
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Basica.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($media=="" OR $media=="2" OR $media=='undefined'){
-         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Media \\\n";
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Media.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
      if($kinder=="" OR $kinder=="2" OR $kinder=='undefined'){
-         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Pre y/o Kinder \\\n";
+         $ERROR=$ERROR."Debe seleccionar si tiene enseñanza Pre y/o Kinder.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
 
 
 
      if($direccion=="" OR $direccion=='undefined'){
-         $ERROR=$ERROR."Debe ingresar una direccion \\\n";
+         $ERROR=$ERROR."Debe ingresar una direccion.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
  

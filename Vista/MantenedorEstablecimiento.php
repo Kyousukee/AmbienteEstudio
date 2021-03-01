@@ -244,14 +244,48 @@
             
              <div class="form-group" style="text-align: center;">
                
-               <label id="txtlabel"><B>INFORMACION INGGRESADA NO CORRESPONDE,
-               FAVOR VERIFIQUE LOS DATOS NUEVAMENTE</B></label>
-               <label id="txtexisteee" style="display: none;">Este pedido no Existe</label>
-               <label id="txtfechacod" style="display: none;">Este pedido no es para hoy</label>
-               <label id="txtvigente" style="display: none;">Este pedido ya no esta vigente</label>
-               <label id="txtclientecod" style="display: none;">Este pedido no es del cliente seleccionado</label>
-               <label id="txtbarras" style="display: none;">Este pedido ya ah sido utilizado</label>
-               <label id="txtpredespacho" style="display: none;">Este pedido ya se encuentra en proceso de Predespacho</label>
+                
+                &nbsp;&nbsp;{{errormensaje}}
+            
+               
+             </div>
+
+
+             
+
+            </form>
+        </div>
+        
+        
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+   <div class="container">
+
+    <!-- Modal -->
+  <div class="modalerror" id="modal_correc" role="document">
+    <div class="modalerror-dialog">
+    
+      <!-- Modal content-->
+      <div class="modalerror-content" id="">
+        
+        <div class="modalerror-body">
+       <button type="button" class="close" id="botoncerrar2" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="panel-body">
+            <form class="form-horizontal" >
+              <div style="text-align: center;"><img src="img/correcto.png" width="80PX" height="80PX"></div>
+            
+             <div class="form-group" style="text-align: center;">
+               
+                
+                &nbsp;&nbsp;{{correctmesage}}
+            
                
              </div>
 
