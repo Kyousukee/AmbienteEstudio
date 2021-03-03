@@ -80,7 +80,22 @@
 					messageOfData = messageOfData.trim().replace("\\", "");
 					i++;
 					}			  
-					alert(messageOfData);
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
+			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
+			 		}else{
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
+			 		}
 					$scope.LstCurs();
 					self.cboestado="0";
 					self.cbodistintivo="0";
@@ -222,7 +237,9 @@
 				})	  
 			.success(function(data) {
 				//console.log(data);
-				   alert("Se Desactivaron todos los cursos seleccionados correctamente.");
+				   //alert("Se Desactivaron todos los cursos seleccionados correctamente.");
+				   document.getElementById("modal_correc").style.display = "block";
+			 	$scope.correctmesage = "Se Desactivaron todos los cursos seleccionados correctamente.";
 				   $scope.LstCurs();
 				   self.cboestado="0";
 					self.cbodistintivo="0";
@@ -231,7 +248,8 @@
 					$scope.actualizar_readonly=true;
 			})
 			.error(function(data) {
-				console.log("Error al cargar aplicacion detalle");
+				document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = "Error al obtener información";
 				})
 			}
 		/*FIN DE  DESACTIVAR TODOS LOS CURSOS*/
@@ -247,12 +265,14 @@
 			  headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				})	  
 			.success(function(data) {
-				alert("Curso Eliminado Correctamente.");
+				document.getElementById("modal_correc").style.display = "block";
+			 	$scope.correctmesage = "Curso Eliminado Correctamente.";
 				$scope.LstCurs();
 				
 			})
 			.error(function(data) {
-				console.log("Error al obtener información");
+				document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = "Error al obtener información";
 			  })
 			}
 			
@@ -280,7 +300,22 @@
 					messageOfData = messageOfData.trim().replace("\\", "");
 					i++;
 					}			  
-					alert(messageOfData);
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
+			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
+			 		}else{
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
+			 		}
 					$scope.LstCurs();
 					self.cboestado="0";
 					self.cbodistintivo="0";
@@ -310,7 +345,22 @@
 					messageOfData = messageOfData.trim().replace("\\", "");
 					i++;
 					}	
-					alert(messageOfData);
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
+			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
+			 		}else{
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
+			 		}
 					$scope.LstCurs();
 					self.cboestado="0";
 					self.cbodistintivo="0";

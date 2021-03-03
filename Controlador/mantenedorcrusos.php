@@ -195,7 +195,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
      $CAN_ER = 0;
 
      
-     $querycantidadcursos = "SELECT count(*) as cantidad FROM cursos WHERE desc_curso='".$curso."'";
+     $querycantidadcursos = "SELECT count(*) as cantidad FROM cursos WHERE desc_curso='".$curso."' and Id_esta='".$ID_ESTA."'";
      
         $cantidadcursos = $c->retornarRegistro($querycantidadcursos,"cantidad");
 
@@ -210,7 +210,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
         
             $queryActualizar = "UPDATE  cursos SET  
                            Est_curso='".$estado."'  
-                           WHERE id_curso ='".$idcurso."'";
+                           WHERE id_curso ='".$idcurso."' and Id_esta='".$ID_ESTA."'";
                            $c->ejecutarConsulta($queryActualizar);
 
 
@@ -402,17 +402,17 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
       if ($buscar!="" AND $buscar!='undefined'){
          $query="SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta   
          WHERE (des_cd LIKE '%".$buscar."%') 
-         ORDER BY id_curso ASC LIMIT 0 , 40";    
+         ORDER BY des_cd,id_curso ASC LIMIT 0 , 40";    
      }else{
-         $query= "SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta      ORDER BY id_curso ASC LIMIT 0 , 40";
+         $query= "SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta      ORDER BY des_cd,id_curso ASC LIMIT 0 , 40";
           }
      }else{
       if ($buscar!="" AND $buscar!='undefined'){
          $query="SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta   
          WHERE (des_cd LIKE '%".$buscar."%') AND a.Id_esta=".$ID_ESTA." 
-         ORDER BY id_curso ASC LIMIT 0 , 40";    
+         ORDER BY des_cd,id_curso ASC LIMIT 0 , 40";    
      }else{
-         $query= "SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta    WHERE a.Id_esta=".$ID_ESTA."  ORDER BY id_curso ASC LIMIT 0 , 40";
+         $query= "SELECT id_curso,des_cd AS desc_curso,let_curso,c.descr_esta,a.Est_curso FROM cursos a INNER JOIN cursosdescripcion b ON b.id_cd = a.desc_curso inner join establecimiento c on a.Id_esta=c.id_esta    WHERE a.Id_esta=".$ID_ESTA."  ORDER BY des_cd,id_curso ASC LIMIT 0 , 40";
      }
      }
      
