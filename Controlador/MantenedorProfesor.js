@@ -8,6 +8,10 @@
 		self.cbobasica="2";
 		self.cbomedia="2";
 		$scope.actualizar_readonly=true;
+		$scope.letracurso = false;
+		$scope.curso = false;
+		$scope.asignar = false;
+		$scope.quitarasignar = false;
 
 		
 		
@@ -162,6 +166,202 @@
 				})
 			}
 		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+		
+
+		/*INICIO DE CARGAR COMBO CURSOS*/
+        self.CargarCursoProfesor = function(IDDOC){
+        	console.log(IDDOC);
+			var AplicacionId = self.cboaplicacion;
+			var form_data ="btn_cargCurpro=0&idprofe="+IDDOC+"";
+			$http({
+				method: 'POST',
+				url: '../Controlador/MantenedorProfesor.php',
+				data: form_data,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				})	  
+			.success(function(data) {
+				//console.log(data);
+				if (data[0].desc_curso==undefined) {
+					$scope.CrgLetr();
+					$scope.CrgCur();
+					$scope.letracurso = false;
+		$scope.curso = false;
+		$scope.asignar = false;
+		$scope.quitarasignar = true;
+
+				}else{
+					self.cbocursos = data[0].desc_curso;
+				self.letracursos = data[0].id_curso;
+				$scope.letracurso = true;
+				$scope.curso = true;
+				$scope.asignar = true;
+		$scope.quitarasignar = false;
+
+				}
+				
+				
+
+				   //$scope.letracursoscar= data;
+				   //self.letracursos = $scope.letracursoscar[0].id_curso;
+			})
+			.error(function(data) {
+				console.log("Error al cargar aplicacion detalle");
+				})
+			}
+			$scope.CrgCursoProfe = self.CargarCursoProfesor;
+		/*FIN DE CARGAR COMBO CURSOS
+
+		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+		self.ModalProfesorJefe = function(IDDOC) {			
+			 			self.txtiddocente2 = IDDOC;
+			 			$scope.CrgCursoProfe(IDDOC);
+			 			document.getElementById("modal_profesorjefe").style.display = "block";
+			 		
+			}
+		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+		self.asignardocentejefe = function(IDDOC) {			
+			 			var form_data ='btn_asigjefe=0&IdDoc='+self.txtiddocente2+'&idcurso='+self.letracursos+'&iddcurso='+self.cbocursos;
+			$http({
+					  method: 'POST',
+					  url: '../Controlador/MantenedorProfesor.php',
+					  data: form_data,
+					   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+					 })
+				
+				.success(function(data) {
+				  var messageOfData="";
+				  var i=0;
+				  messageOfData = data.trim().replace("\\", "");
+				  while (i<10){
+					messageOfData = messageOfData.trim().replace("\\", "");
+					i++;
+					}	
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
+			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
+			 		}else{
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
+			 		}
+
+					$scope.LstPDoc();
+					$scope.CrgCur();
+
+				})
+				.error(function(data) {
+				 console.log("Ocurrio un error al cambiar estado");
+				})
+			 		
+			}
+		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+		self.designardocentejefe = function(IDDOC) {			
+			 			var form_data ='btn_Desasigjefe=0&IdDoc='+self.txtiddocente2+'&idcurso='+self.letracursos+'&iddcurso='+self.cbocursos;
+			$http({
+					  method: 'POST',
+					  url: '../Controlador/MantenedorProfesor.php',
+					  data: form_data,
+					   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+					 })
+				
+				.success(function(data) {
+				  var messageOfData="";
+				  var i=0;
+				  messageOfData = data.trim().replace("\\", "");
+				  while (i<10){
+					messageOfData = messageOfData.trim().replace("\\", "");
+					i++;
+					}	
+					var respuesta;
+			 		var cadena = data;
+
+			 		var palabra0="errores";
+			 		let posicion0 = cadena.indexOf(palabra0);
+
+			 		if (posicion0 !== -1){
+			 			//$("#modal_error").modal("show");
+			 			//self.txtfechacod= "Este pedido no es para hoy.";
+			 			
+			 			document.getElementById("modal_error").style.display = "block";
+			 			$scope.errormensaje = messageOfData;
+			 		}else{
+			 			document.getElementById("modal_correc").style.display = "block";
+			 			$scope.correctmesage = messageOfData;
+			 		}
+
+					$scope.LstPDoc();
+					$scope.CrgCur();
+
+				})
+				.error(function(data) {
+				 console.log("Ocurrio un error al cambiar estado");
+				})
+			 		
+			}
+		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+
+		/*INICIO DE CARGAR COMBO CURSOS*/
+        self.cargarCursos = function(){
+			var AplicacionId = self.cboaplicacion;
+			var form_data ="btn_crgcur=0";
+			$http({
+				method: 'POST',
+				url: '../Controlador/MantenedorAsignaturas.php',
+				data: form_data,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				})	  
+			.success(function(data) {
+				//console.log(data);
+				   $scope.cbocursoscar= data;
+				   self.cbocursos = $scope.cbocursoscar[0].id_cd;
+				   
+			})
+			.error(function(data) {
+				console.log("Error al cargar aplicacion detalle");
+				})
+			}
+			$scope.CrgCur = self.cargarCursos;
+			$scope.CrgCur();
+		/*FIN DE CARGAR COMBO CURSOS*/
+
+		
+
+		/*INICIO DE CARGAR COMBO CURSOS*/
+        self.CargarLetra = function(){
+			var AplicacionId = self.cboaplicacion;
+			var form_data ="btn_crgLet=0&txtcurso="+self.cbocursos+"";
+			$http({
+				method: 'POST',
+				url: '../Controlador/MantenedorAsignaturas.php',
+				data: form_data,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				})	  
+			.success(function(data) {
+				//console.log(data);
+				   $scope.letracursoscar= data;
+				   self.letracursos = $scope.letracursoscar[0].id_curso;
+			})
+			.error(function(data) {
+				console.log("Error al cargar aplicacion detalle");
+				})
+			}
+			$scope.CrgLetr = self.CargarLetra;
+			$scope.CrgLetr();
+		/*FIN DE CARGAR COMBO CURSOS
 
 
 		/*INICIO DE FUNCION QUE ACTIVA/DESACTIVA*/

@@ -12,7 +12,7 @@ $IDTIP_USU  = $_SESSION['IDTIP_USU'];
 $TIP_USU  = $_SESSION['TIPO_Usu'];
 $USU_USU  = $_SESSION['Usuario'];
 $EST_USU  = $_SESSION['Establecimiento'];
-
+$ID_ESTA  = $_SESSION['ID_Esta'];
 require("../Modelo/conexion.php");
 $c = new baseDatos();
 
@@ -158,16 +158,29 @@ document.getElementById("botoncerrar").onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == document.getElementById("modal_error") || event.target == document.getElementById("modal_correc")) {
+  if (event.target == document.getElementById("modal_error") || event.target == document.getElementById("modal_correc") || event.target == document.getElementById("modal_profesorjefe")) {
     document.getElementById("modal_error").style.display = "none";
+    document.getElementById("modal_profesorjefe").style.display = "none";
     document.getElementById("modal_correc").style.display = "none";
+    
   }
 }
+
 
   document.getElementById("botoncerrar2").onclick = function() {
   
   document.getElementById("modal_correc").style.display = "none";
 }
+
+document.getElementById("botoncerrar3").onclick = function() {
+  
+  document.getElementById("modal_profesorjefe").style.display = "none";
+}
+
+
+
+
+
 
 
 </script>

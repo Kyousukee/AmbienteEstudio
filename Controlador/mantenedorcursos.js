@@ -254,6 +254,28 @@
 			}
 		/*FIN DE  DESACTIVAR TODOS LOS CURSOS*/
 
+		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+		self.ModalAlumnos = function(IDCURSO) {			
+			 			self.txtidcurso2 = IDCURSO;
+			 			//$scope.CrgCursoProfe(IDCURSO);
+			 			document.getElementById("modal_alumnos").style.display = "block";
+			 		
+			}
+		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+		window.onclick = function(event) {
+  if (event.target == document.getElementById("modal_alumnos") ) {
+    document.getElementById("modal_alumnos").style.display = "none";
+    
+  }
+}
+
+document.getElementById("botoncerrar4").onclick = function() {
+  
+  document.getElementById("modal_alumnos").style.display = "none";
+}
+
+
 		/*INICIO DE ELIMINAR CURSO*/
 		self.proveedorFormEli = function(idcurso){
 			if(confirm("Confirmaci\u00f3n: \n\277Esta seguro que desea eliminar este curso?")){

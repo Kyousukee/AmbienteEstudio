@@ -124,6 +124,134 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
     }
     }
    /*FIN DEL BOTON DE GRABAR*/   
+
+
+    /*INICIO DEL BOTON DE ACTIVAR/DESACTIVAR*/
+   if(isset($_POST['btn_asigjefe'])){
+    if($modificar!=""){   
+           //recibo datos
+           $iddoc = trim($_POST['IdDoc']);           
+           $iddcurso = trim($_POST['iddcurso']);           
+           $idcurso = trim($_POST['idcurso']);           
+           //DECLARO VARIABLES PARA ERRORES
+               
+            $ERROR ="Se encontraron los siguientes errores:\\\n";
+            $CAN_ER = 0;
+
+            $queryIdentificador1 = "SELECT a.id_docc FROM docentecurso a inner join docentes b on b.id_doce = a.id_doc where b.Id_esta='".$ID_ESTA."' and a.id_doc='".$iddoc."' order by a.id_docc desc LIMIT 1;";
+
+          if($c->buscarRegistro($queryIdentificador1)==true){
+               $ERROR=$ERROR."Este docente ya se encuentra como profesor jefe de otro curso.-\\\n";
+                $CAN_ER=$CAN_ER+1;
+          }
+
+
+          $queryIdentificador1 = "SELECT a.id_docc FROM docentecurso a where a.id_curso='".$idcurso."' order by a.id_docc desc LIMIT 1;";
+
+          if($c->buscarRegistro($queryIdentificador1)==true){
+               $ERROR=$ERROR."Este curso ya se tiene un profesor jefe asignado.-\\\n";
+                $CAN_ER=$CAN_ER+1;
+          }
+          
+          if($iddoc=="" OR $iddoc=="0" OR $iddoc=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un docente.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+
+     if($idcurso=="" OR $idcurso=="0" OR $idcurso=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un Letra curso.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     if($iddcurso=="" OR $iddcurso=="0" OR $iddcurso=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un curso.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+
+
+
+                
+            if ($CAN_ER=="0"){
+                
+
+                $queryDelete = "INSERT into docentecurso (id_doc,id_curso) values ('".$iddoc."','".$idcurso."');";
+           
+                 if($c->ejecutarConsulta($queryDelete)==true){
+                   $c->insertarLog($COD_USU,"docentecurso","id_docc","id_docc","INSERT","");
+                    echo "Docente Asignado correctamente";
+                 }else{
+                    echo "Ocurrior un error al actualizar el estado del registro";
+                 }
+                 
+               }else{
+                    echo $ERROR;
+               }
+            }else{
+                echo "No tiene privilegios para modificar proveedor";
+            }
+        }
+   /*FIN DEL BOTON DE ACTIVAR/DESACTIVAR*/  
+
+   /*INICIO DEL BOTON DE ACTIVAR/DESACTIVAR*/
+   if(isset($_POST['btn_Desasigjefe'])){
+    if($modificar!=""){   
+           //recibo datos
+           $iddoc = trim($_POST['IdDoc']);           
+           $iddcurso = trim($_POST['iddcurso']);           
+           $idcurso = trim($_POST['idcurso']);           
+           //DECLARO VARIABLES PARA ERRORES
+               
+            $ERROR ="Se encontraron los siguientes errores:\\\n";
+            $CAN_ER = 0;
+
+            
+
+
+          
+          
+          if($iddoc=="" OR $iddoc=="0" OR $iddoc=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un docente.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+
+     if($idcurso=="" OR $idcurso=="0" OR $idcurso=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un Letra curso.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+     if($iddcurso=="" OR $iddcurso=="0" OR $iddcurso=='undefined'){
+         $ERROR=$ERROR."Debe seleccionar un curso.- \\\n";
+         $CAN_ER=$CAN_ER+1;
+     }
+
+
+
+
+                
+            if ($CAN_ER=="0"){
+                
+
+                $queryDelete = "DELETE from docentecurso where id_doc='".$iddoc."' and id_curso='".$idcurso."';";
+           
+                 if($c->ejecutarConsulta($queryDelete)==true){
+                   $c->insertarLog($COD_USU,"docentecurso","id_docc","id_docc","DELETE","");
+                    echo "Designacion procesada correctamente";
+                 }else{
+                    echo "Ocurrior un error al actualizar el estado del registro";
+                 }
+                 
+               }else{
+                    echo $ERROR;
+               }
+            }else{
+                echo "No tiene privilegios para modificar proveedor";
+            }
+        }
+   /*FIN DEL BOTON DE ACTIVAR/DESACTIVAR*/  
+
    
    /*INICIO DEL BOTON DE ACTUALIZAR*/
    if(isset($_POST['btn_actualizar'])){
@@ -315,6 +443,14 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
     echo $Resp;
    }
    /*FIN AGREGAR EMAIL A PROVEEDOR*/
+
+    /*INICIO DEL CARGAR CURSOS*/
+   if(isset($_POST['btn_cargCurpro'])){
+        $Doc=$_POST['idprofe'];
+        $query="SELECT a.id_doc,a.id_curso,b.desc_curso FROM docentecurso a inner join cursos b on b.id_curso=a.id_curso WHERE id_doc='".$Doc."';";
+        echo $c->retornarJSON($query);
+        }
+   /*FIN DEL CARGAR CURSOS*/
 
    /*INICIO MODAL Email*/
    if(isset($_POST['btn_lst_em'])){

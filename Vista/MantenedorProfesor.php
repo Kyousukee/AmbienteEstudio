@@ -101,6 +101,7 @@
                                   <th>Email</th>
                                   <th>Estado</th>
                                   <th>Establecimiento</th>
+                                  <th>Profesor Jefe</th>
                                   <th>Editar</th>                                  
                                   <th>Eliminar</th>                                  
                                 </tr>
@@ -116,6 +117,7 @@
                                   <td>{{s.email_doce}}</td>
                                   <td>{{s.est_doce}}</td>
                                   <td>{{s.descr_esta}}</td>
+                                  <td><button class="btn btn-primary" ng-click="angCtrl.ModalProfesorJefe(s.id_doce)"><i class='bx bxs-inbox'></i></button></td>
                                   <td><button class="btn btn-primary" ng-click="angCtrl.proveedorFormEdi(s.id_doce)"><i class='bx bx-edit-alt'></i></button></td>
                                   <td><button class="btn btn-danger" ng-click="angCtrl.proveedorFormEli(s.id_doce,s.rut_doce)"><i class='bx bxs-x-square'></i></button></td>
                                 </tr>
@@ -193,6 +195,65 @@
     </div>
   </div>
   Modal Email -->
+  <div class="container">
+
+    <!-- Modal -->
+  <div class="modalerror" id="modal_profesorjefe" role="document">
+    <div class="modalerror-dialog">
+    
+      <!-- Modal content-->
+      <div class="modalerror-content" id="">
+        
+        <div class="modalerror-body">
+       
+        <div class="panel-body">
+          <button type="button" class="close" id="botoncerrar3" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title">Profesor Jefe</h3>
+            <form class="form-horizontal" >
+            
+            <input type="hidden" name="txtiddocente2" id="txtiddocente2" ng-model="angCtrl.txtiddocente2">
+             <div class="form-group">
+                                     
+                                      
+                                      <label class="col-sm-2 control-label">Curso</label>
+                                      <div class="col-sm-4">
+                                       <select  class="form-control" ng-change="angCtrl.CargarLetra()" ng-model="angCtrl.cbocursos" ng-options="d.id_cd as d.des_cd for d in cbocursoscar" ng-disabled="curso">        
+                                      </select>
+                                      </div>
+                                      
+                                     
+                                      
+                                      <label class="col-sm-2 control-label">Letra Curso</label>
+                                      <div class="col-sm-4">
+                                       <select  id="cboletra" class="form-control" ng-model="angCtrl.letracursos" ng-options="d.id_curso as d.let_curso for d in letracursoscar" ng-disabled="letracurso" >        
+                                      </select>
+                                      </div>
+                                      
+
+                                  
+                                  </div>
+                                  <div style="text-align: right;">
+                                       <button class="btn btn-primary" ng-click="angCtrl.asignardocentejefe()" ng-disabled="asignar"><i class='bx bxs-plus-circle'></i>ASIGNAR</button>
+                                      
+                                       <button class="btn btn-danger" ng-click="angCtrl.designardocentejefe()" ng-disabled="quitarasignar"><i class='bx bxs-plus-circle'></i>QUITAR ASIGNACION</button>
+                                      
+                                  </div>
+
+
+             
+
+            </form>
+        </div>
+        
+        
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
 
    <div class="container">
 

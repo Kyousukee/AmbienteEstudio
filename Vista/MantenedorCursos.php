@@ -6,6 +6,7 @@
   </div>
      <!-- page start-->
 
+
      <div class="row">
        <section class="panel" style="width: 100%">
                           <div class="panel-body">
@@ -108,6 +109,7 @@
                                   <th>Destintivo</th>
                                   <th>Establecimiento</th>
                                   <th>Estado</th>
+                                  <th>Alumnos</th>
                                   <th>Editar</th>                                  
                                   <th>Eliminar</th>                                  
                                 </tr>
@@ -119,6 +121,7 @@
                                   <td>{{s.let_curso}}</td>
                                   <td>{{s.descr_esta}}</td>
                                   <td>{{s.Est_curso}}</td>
+                                  <td><button class="btn btn-primary" ng-click="angCtrl.ModalAlumnos(s.id_curso)"><i class='bx bxs-user-detail'></i></button></td>
                                   <td><button class="btn btn-primary" ng-click="angCtrl.proveedorFormEdi(s.id_curso)"><i class='bx bx-edit-alt'></i></button></td>
                                   <td ng-if="s.Est_curso=='I'"><button class="btn btn-danger" ng-click="angCtrl.proveedorFormEli(s.id_curso)"><i class='bx bxs-x-square'></i></button></td>
                                   <td ng-if="s.Est_curso=='A'"><button class="btn btn-danger" ng-click="angCtrl.proveedorFormEli(s.id_curso)" disabled="disabled"><i class='bx bxs-x-square'></i></button></td>
@@ -157,6 +160,66 @@
              </div>
 
 
+             
+
+            </form>
+        </div>
+        
+        
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+  <div class="container">
+
+    <!-- Modal -->
+  <div class="modalerror" id="modal_alumnos" role="document">
+    <div class="modalerror-dialog">
+    
+      <!-- Modal content-->
+      <div class="modalerror-content" id="">
+        
+        <div class="modalerror-body">
+       <button type="button" class="close" id="botoncerrar4" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="panel-body">
+          
+            
+            <form class="form-horizontal" >
+            
+            <input type="hidden" name="txtidcurso2" id="txtidcurso2" ng-model="angCtrl.txtidcurso2">
+             
+
+              <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              Listado de Alumnos
+                          </header>
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Rut</th>
+                                  <th>Nombre Alumno</th>
+                                  <th>Pasar de Curso</th>                               
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr ng-repeat="s in alumnosLst track by $index">
+                                  <td>{{s.id_curso}}</td>
+                                  <td>{{s.desc_curso}}</td>
+                                  <td><button class="btn btn-primary" ng-click="angCtrl.proveedorFormEdi(s.id_curso)"><i class='bx bx-edit-alt'></i></button></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                      </section>
+                  </div>
              
 
             </form>

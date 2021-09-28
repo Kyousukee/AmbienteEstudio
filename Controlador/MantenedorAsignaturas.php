@@ -24,7 +24,9 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
 
 /*INICIO DEL CARGAR CURSOS*/
    if(isset($_POST['btn_crgcur'])){
-        $query="SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_curso=id_cd where Id_esta='".$ID_ESTA."' order by id_cd asc;";
+        $query="SELECT 0 as id_cd ,'Seleccione' as des_cd
+union all
+SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_curso=id_cd where Id_esta='".$ID_ESTA."' order by id_cd asc;";
         echo $c->retornarJSON($query);
         }
    /*FIN DEL CARGAR CURSOS*/
@@ -38,7 +40,7 @@ SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_cu
         }
    /*FIN DEL CARGAR CURSOS*/
    
-   /*INICIO DEL CARGAR LETRA
+   /*INICIO DEL CARGAR LETRA*/
    if(isset($_POST['btn_crgLet'])){
         $curso= trim($_POST['txtcurso']);
         if ($curso=="" OR $curso=='undefined') {
@@ -78,7 +80,7 @@ SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_cu
 
      
 
-     if($cbocurso=="" OR $cbocurso=='undefined'){
+     if($cbocurso=="" OR $cbocurso=='undefined' OR $cbocurso=="0"){
          $ERROR=$ERROR."Debe seleccionar un curso.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }
@@ -88,6 +90,8 @@ SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_cu
          $ERROR=$ERROR."Debe seleccionar una letra de curso.- \\\n";
          $CAN_ER=$CAN_ER+1;
      }*/
+
+
 
 
      if($descripcion=="" OR $descripcion=='undefined'){
@@ -255,6 +259,8 @@ SELECT DISTINCT id_cd,des_cd FROM cursosdescripcion inner join cursos on desc_cu
         }
    /*FIN DEL BOTON DE ACTIVAR/DESACTIVAR*/  
 
+
+     
    /*INICIO DEL DEL TRAER PROVEEDOR*/
    if(isset($_POST['btn_editar'])){
     $IdASig = trim($_POST['IdASig']);

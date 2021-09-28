@@ -115,6 +115,50 @@ function cargarMenu($IdUsuario){
     
   }
 
+  function cargarNoticias($IdEsta){
+
+    
+
+      $this->conexion();
+      $this->consulta = "SELECT a.*,b.descr_esta,IF(a.id_ne=(SELECT id_ne from noticiasestablecimiento where Id_esta=".$IdEsta." order by id_ne desc limit 1), 'active', '') as active FROM noticiasestablecimiento a inner join establecimiento b on a.Id_esta=b.id_esta WHERE a.Id_esta=".$IdEsta."  ORDER BY a.id_ne desc;";
+      $ejecutar = mysqli_query($this->id_con,$this->consulta);
+
+      echo "<div class='img-slider'>";
+
+      while($rs = mysqli_fetch_array($ejecutar,MYSQLI_BOTH)) {
+          //echo "<h3>".$rs['active']."</h3>";
+          echo "<div class='slide ".$rs['active']."'>";
+          echo "<img src='../Vista/Noticias/Img/".$rs['img_not']."' alt='' width='100%' height='300px'>";
+          echo "<div class='info'>";
+          echo "<h2>".$rs['tit_ne']."</h2>";
+          echo "<p>".$rs['desc_ne']." <a href='../Vista/Noticias/PDF/".$rs['arch_not']."' target='_blank'>Leer Mas...</a></p>";
+          echo "</div>";
+          echo "</div>";
+      }
+
+     
+     $this->consulta2 = "SELECT a.*,b.descr_esta,IF(a.id_ne=(SELECT id_ne from noticiasestablecimiento where Id_esta=".$IdEsta." order by id_ne desc limit 1), 'active', '') as active FROM noticiasestablecimiento a inner join establecimiento b on a.Id_esta=b.id_esta WHERE a.Id_esta=".$IdEsta."  ORDER BY a.id_ne desc;";
+      $ejecutar2 = mysqli_query($this->id_con,$this->consulta2);
+
+      echo "<div class='navigation'>";
+
+       while($cs = mysqli_fetch_array($ejecutar2,MYSQLI_BOTH)) {
+          //echo "<h3>".$cs['tit_ne']."</h3>";
+          echo "<div class='btn ".$rs['active']."'></div>";
+      }
+      echo "</div>";
+     
+
+      echo "</div>";
+
+
+
+      
+      $this->desconexion();
+     
+    
+  }
+
   function cargarSubMenu($ref,$IdUsuario){
 
     $query="SELECT m_aplicacion_sub_detalle.Descripcion,
@@ -267,6 +311,16 @@ function cargarMenu($IdUsuario){
     echo"</select>";
     $this->desconexion();
   }
+
+  function get_imgs($IdEsta){
+  $images = array();
+  $con = conexion();
+  $query=$con->query("SELECT a.*,b.descr_esta,IF(a.id_ne=(SELECT id_ne from noticiasestablecimiento where Id_esta=$IdEsta order by id_ne desc limit 1), 'active', '') as active FROM noticiasestablecimiento a inner join establecimiento b on a.Id_esta=b.id_esta WHERE a.Id_esta=$IdEsta ORDER BY a.id_ne desc;");
+  while($r=$query->fetch_object()){
+    $images[] = $r;
+  }
+  return $images;
+}
 
   function horaActual($segundos){
         date_default_timezone_set("Chile/Continental");
