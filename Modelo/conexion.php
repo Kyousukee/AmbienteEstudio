@@ -107,10 +107,10 @@ function cargarMenu($IdUsuario){
       }
 
       $this->desconexion();
-     
+     echo "<a class='w3-bar-item w3-button w3-hover-gray' href='../Controlador/cerrarS.php'><i class='icon_key_alt'></i>Cerrar Sesión</a>";
 
       echo "</div>";
-       echo "<a class='w3-bar-item w3-button w3-hover-white' style='margin: 300px 80px 0 10px;padding: 0;' href='../Controlador/cerrarS.php'><i class='icon_key_alt'></i>Cerrar Sesión</a>";
+       
   echo "</aside>";
     
   }

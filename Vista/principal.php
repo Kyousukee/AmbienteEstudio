@@ -152,6 +152,7 @@ function onClick(element) {
 ?>
 <script src="js/expire.js"></script>
 <script type="text/javascript">   // When the user clicks on <span> (x), close the modal
+
 document.getElementById("botoncerrar").onclick = function() {
   document.getElementById("modal_error").style.display = "none";
 }
@@ -162,12 +163,13 @@ window.onclick = function(event) {
     document.getElementById("modal_error").style.display = "none";
     document.getElementById("modal_profesorjefe").style.display = "none";
     document.getElementById("modal_correc").style.display = "none";
+    console.log("Si pasa");
     
   }
 }
 
 
-  document.getElementById("botoncerrar2").onclick = function() {
+document.getElementById("botoncerrar2").onclick = function() {
   
   document.getElementById("modal_correc").style.display = "none";
 }

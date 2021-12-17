@@ -23,7 +23,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
 
     /*INICIO DEL CARGAR CURSOS*/
    if(isset($_POST['btn_crgcur'])){
-        $query="SELECT id_cd,des_cd FROM cursosdescripcion;";
+        $query="SELECT id_cd,des_cd FROM cursosdescripcion where tip_cd in ((select IF(Bas_esta=1, 0, -1) from establecimiento where id_esta='".$ID_ESTA."'),(select IF(Med_esta=1, 1, -1) from establecimiento where id_esta='".$ID_ESTA."'),(select IF(Kin_esta=1, 3, -1) from establecimiento where id_esta='".$ID_ESTA."'));";
         echo $c->retornarJSON($query);
         }
    /*FIN DEL CARGAR CURSOS*/
