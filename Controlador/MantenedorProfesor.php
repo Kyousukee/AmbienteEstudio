@@ -366,6 +366,7 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
                  if($c->ejecutarConsulta($queryDelete)==true){
                    $c->insertarLog($COD_USU,"docentes","id_doce","id_doce","DELETE",$iddocente);
                    $c->ejecutarConsulta("Delete from usuarios where log_usu='".$rut."'");
+                   $c->ejecutarConsulta("Delete from docentecurso where id_doc='".$iddocente."'");
                     echo "Docente Eliminado";
                  }else{
                     echo "Ocurrior un error al actualizar el estado del registro";

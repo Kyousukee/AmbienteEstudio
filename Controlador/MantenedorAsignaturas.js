@@ -145,6 +145,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstPAsig();
@@ -152,7 +153,16 @@
 			}
 		/*FIN DE FUNCION DE INGRESAR PROVEEDOR*/
 
-
+		self.limpiar = function(){
+ 			//console.log('Hola');
+ 			self.txtidasig = "";
+ 			self.txtdescripcion = "";
+ 			$scope.CrgCur();
+ 			self.cboestado = "0";
+ 			$scope.readonly                =false;
+			$scope.actualizar_readonly     =true;
+			$scope.grabar_readonly         =false;
+	    }
 
 		/*INICIO DE FUNCION QUE TRAE PROVEEDOR*/
 		self.proveedorFormEdi = function(IdASig){
@@ -262,6 +272,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstPAsig();

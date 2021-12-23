@@ -24,7 +24,7 @@
                                   <div class="form-group">
                                       <label class="col-sm-2 control-label">Rut</label>
                                       <div class="col-sm-3">
-                                          <input type="text" maxlength="15" class="form-control" id="txtrut" name="txtrut"  ng-model="angCtrl.txtrut">
+                                          <input type="text" maxlength="12" onkeyup="formatCliente(this)" class="form-control" id="txtrut" name="txtrut"  ng-model="angCtrl.txtrut">
                                       </div>
                                       <label class="col-sm-2 control-label">Nombre</label>
                                       <div class="col-sm-3">
@@ -129,72 +129,33 @@
                   </div>
               </div>      
      <!-- page end-->
-      <!-- Modal Email 
-  <div class="container">
-    <div class="modal fade" id="modal_email" role="document">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <div  class="form-group">
-              <h4 class="modal-title" class="col-sm-2 control-label">Agregar Email #RUT</h4>
-              <input type="text" class="form-control" id="rutemail" name="rutemail" ng-model="angCtrl.rutemail" disabled>
-            </div>
-            
-          </div>
-          <div class="modal-body">
-            <section class="panel">
-              <div class="panel-body">
-                <form class="form-horizontal" method="POST">
-                  <input type="hidden" name="txtIDOC" id="txtIDOC" ng-model="angCtrl.txtIDOC">
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Email: </label>
-                    <div class="col-sm-6">
-                      <input type="email" placeholder="Es obligatorio..." class="form-control" ng-model="angCtrl.otroemail" id="otroemail" name="otroemail" >      
-                    </div>
-                  </div>
 
-                  <div class="col-sm-3">
-                    <input  type="submit" name="btn_agregar_email" id="btn_agregar_email" value="Agregar Email" title="Agregar Email" class="btn btn-primary" ng-click="angCtrl.agregarEmailPro()">
-                  </div>
-                </form>
-              </div>
-            </section>
+<script type="text/javascript">
+  function formatCliente(cliente){
+  cliente.value=cliente.value.replace(/[.-]/g, '')
+.replace( /^(\d{1,2})(\d{3})(\d{3})(\w{1})$/, '$1.$2.$3-$4')
+}
 
-            <section class="panel">
-              <table class="table table-condensed">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Proveedor</th>
-                    <th>Email</th>
-                    <th>Eliminar Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="em in LstEm track by (em.IdProEm)">
-                    <td>{{em.IdProEm}}</td>
-                    <td>{{em.ProRut}}</td>
-                    <td>{{em.Email}}</td>
-                    <td align="center">
-                      <button class="btn btn-danger" style="width: 30px; height: 30px;" ng-click="angCtrl.eliminarEmail(em.IdProEm)">
-                        <img src="" style="    width: 20px; height: 20px; margin-left: -8px; margin-top: -7px;">
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-          </div>
+function cerrarmodalprofesor() {
+  
+  document.getElementById("modal_profesorjefe").style.display = "none";
+}
 
-          <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  Modal Email -->
+function cerrarmodalcorrec() {
+  
+  document.getElementById("modal_profesorjefe").style.display = "none";
+  document.getElementById("modal_correc").style.display = "none";
+}
+
+function cerramodalerror() {
+  
+  
+  document.getElementById("modal_error").style.display = "none";
+ 
+}
+</script>
+
+
   <div class="container">
 
     <!-- Modal -->
@@ -207,7 +168,7 @@
         <div class="modalerror-body">
        
         <div class="panel-body">
-          <button type="button" class="close" id="botoncerrar3" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" id="botoncerrar3" onclick="cerrarmodalprofesor()" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3 class="modal-title">Profesor Jefe</h3>
             <form class="form-horizontal" >
             
@@ -244,7 +205,9 @@
 
             </form>
         </div>
-        
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="cerrarmodalprofesor()" data-dismiss="modal">Cerrar</button>
+      </div>
         
 
         </div>
@@ -265,7 +228,7 @@
       <div class="modalerror-content" id="">
         
         <div class="modalerror-body">
-       <button type="button" class="close" id="botoncerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <button type="button" class="close" id="botoncerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="panel-body">
             <form class="form-horizontal" >
               <div style="text-align: center;"><img src="img/advertencia.png" width="80PX" height="80PX"></div>
@@ -283,7 +246,9 @@
 
             </form>
         </div>
-        
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="cerramodalerror()" data-dismiss="modal">Cerrar</button>
+      </div>
         
 
         </div>
@@ -323,7 +288,9 @@
             </form>
         </div>
         
-        
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="cerrarmodalcorrec()" data-dismiss="modal">Cerrar</button>
+      </div>
 
         </div>
       </div>

@@ -164,12 +164,27 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstPAsig();
 				})
 			}
 		/*FIN DE FUNCION DE INGRESAR PROVEEDOR*/
+
+
+		self.limpiar = function(){
+ 			//console.log('Hola');
+ 			self.txtidunidad = "";
+ 			self.txtnunidad = "";
+ 			self.txtdescripcion = "";
+ 			$scope.CrgCur();
+ 			$scope.cboasignaturacar= "";
+ 			self.cboestado = "0";
+ 			$scope.readonly                =false;
+			$scope.actualizar_readonly     =true;
+			$scope.grabar_readonly         =false;
+	    }
 
 
 
@@ -285,6 +300,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstPAsig();

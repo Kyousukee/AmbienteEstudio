@@ -195,14 +195,14 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
      $CAN_ER = 0;
 
      
-     $querycantidadcursos = "SELECT count(*) as cantidad FROM cursos WHERE desc_curso='".$curso."' and Id_esta='".$ID_ESTA."'";
+     /*$querycantidadcursos = "SELECT count(*) as cantidad FROM cursos WHERE desc_curso='".$curso."' and Id_esta='".$ID_ESTA."'";
      
         $cantidadcursos = $c->retornarRegistro($querycantidadcursos,"cantidad");
 
       if ($destintivo<$cantidadcursos and $destintivo!=0) {
          $ERROR=$ERROR."Para descontar cantidad de cursos se requiere desactivarlos y eliminarlos como corresponde. \\\n";
          $CAN_ER=$CAN_ER+1;
-      }
+      }*/
      
  
      if ($CAN_ER=="0"){
@@ -212,122 +212,6 @@ if (trim($COD_USU)!="" AND trim($NOM_USU)!=""){
                            Est_curso='".$estado."'  
                            WHERE id_curso ='".$idcurso."' and Id_esta='".$ID_ESTA."'";
                            $c->ejecutarConsulta($queryActualizar);
-
-
-            if ($destintivo>$cantidadcursos) {
-              $queryeliminar = "DELETE from  cursos   
-                           WHERE desc_curso ='".$curso."'";
-                           $c->ejecutarConsulta($queryeliminar);
-            if ($destintivo>=1) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','A');";
-        $c->ejecutarConsulta($queryInsertar);
-      }
-      if ($destintivo>=2) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','B');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=3) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','C');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=4) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','D');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=5) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','E');";
-        $c->ejecutarConsulta($queryInsertar);
-      }      
-      if ($destintivo>=6) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','F');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=7) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','G');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=8) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','H');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=9) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','I');";
-        $c->ejecutarConsulta($queryInsertar);
-      }
-      if ($destintivo>=10) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','J');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=11) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','K');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=12) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','L');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=13) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','M');";
-        $c->ejecutarConsulta($queryInsertar);
-      }      
-      if ($destintivo>=14) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','N');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=15) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','Ñ');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=16) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','O');";
-        $c->ejecutarConsulta($queryInsertar);
-      } 
-      if ($destintivo>=17) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','P');";
-        $c->ejecutarConsulta($queryInsertar);
-      }
-      if ($destintivo>=18) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','Q');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=19) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','R');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=20) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','S');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=21) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','T');";
-        $c->ejecutarConsulta($queryInsertar);
-      }      
-      if ($destintivo>=22) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','U');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=23) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','V');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=24) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','W');";
-        $c->ejecutarConsulta($queryInsertar);
-      } 
-      if ($destintivo>=25) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','X');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=26) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','Y');";
-        $c->ejecutarConsulta($queryInsertar);
-      }  
-      if ($destintivo>=27) {
-        $queryInsertar = "INSERT INTO cursos(desc_curso, usu_cre, fec_cre, Est_curso, Id_esta, let_curso) VALUES ('".$curso."','".$COD_USU."',now(),'A','".$ID_ESTA."','Z');";
-        $c->ejecutarConsulta($queryInsertar);
-      } 
-          
-            }
          
                   
 

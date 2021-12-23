@@ -155,10 +155,12 @@ function onClick(element) {
 
 document.getElementById("botoncerrar").onclick = function() {
   document.getElementById("modal_error").style.display = "none";
+  
+
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+/*window.onclick = function(event) {
   if (event.target == document.getElementById("modal_error") || event.target == document.getElementById("modal_correc") || event.target == document.getElementById("modal_profesorjefe")) {
     document.getElementById("modal_error").style.display = "none";
     document.getElementById("modal_profesorjefe").style.display = "none";
@@ -166,7 +168,9 @@ window.onclick = function(event) {
     console.log("Si pasa");
     
   }
-}
+}*/
+
+ 
 
 
 document.getElementById("botoncerrar2").onclick = function() {
@@ -174,10 +178,7 @@ document.getElementById("botoncerrar2").onclick = function() {
   document.getElementById("modal_correc").style.display = "none";
 }
 
-document.getElementById("botoncerrar3").onclick = function() {
-  
-  document.getElementById("modal_profesorjefe").style.display = "none";
-}
+
 
 
 

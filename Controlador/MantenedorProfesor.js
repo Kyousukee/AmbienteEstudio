@@ -82,6 +82,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstPDoc();
@@ -221,6 +222,9 @@
 			}
 		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
 
+
+
+
 		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
 		self.asignardocentejefe = function(IDDOC) {			
 			 			var form_data ='btn_asigjefe=0&IdDoc='+self.txtiddocente2+'&idcurso='+self.letracursos+'&iddcurso='+self.cbocursos;
@@ -266,6 +270,8 @@
 			 		
 			}
 		/*FIN DE FUNCION DE ACTUALIZAR PROVEEDOR*/
+
+
 
 		/*INICIO DE FUNCION DE ACTUALIZAR PROVEEDOR*/
 		self.designardocentejefe = function(IDDOC) {			
@@ -419,11 +425,16 @@
 
 
  		/*TRAER RUT A MODAL CON BOOTSTRAP*/
- 		self.mostrarrut = function(){
- 			var rut = self.txtidentificador;
- 			//console.log(rut);
-	    	$scope.angCtrl.rutemail       =rut;
-	     	$scope.LstEma();
+ 		self.limpiar = function(){
+ 			console.log('Hola');
+ 			self.txtidprofe = "";
+ 			self.txtrut = ""; 
+ 			self.txtnom = "";
+ 			self.txtape1 = "";
+ 			self.txtape2 = "";
+ 			self.txtfono = "";
+ 			self.txtemail = "";
+ 			self.cboestado = "0";
 
 	    }	
 

@@ -31,7 +31,7 @@
                                       </div>
                                       <label class="col-sm-3 control-label">Maximo cursos</label>
                                       <div class="col-sm-3">
-                                       <select id="cbodistintivo" name="cbodistintivo" class="form-control" ng-model="angCtrl.cbodistintivo" style="height: 34px;">
+                                       <select id="cbodistintivo" name="cbodistintivo" class="form-control" ng-model="angCtrl.cbodistintivo" style="height: 34px;" ng-disabled="readonly">
                                          <option value="0">Unico</option>;
                                          <option value="1">A</option>";
                                          <option value="2">B</option>"; 
@@ -136,7 +136,7 @@
      <!-- page end-->
       
 
-         <div class="container">
+<div class="container">
 
     <!-- Modal -->
   <div class="modalerror" id="modal_error" role="document">
@@ -148,6 +148,7 @@
         <div class="modalerror-body">
        <button type="button" class="close" id="botoncerrar" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="panel-body">
+          <div class="panel-body">
             <form class="form-horizontal" >
               <div style="text-align: center;"><img src="img/advertencia.png" width="80PX" height="80PX"></div>
             
@@ -163,6 +164,7 @@
              
 
             </form>
+        </div>
         </div>
         
         
@@ -273,7 +275,9 @@
   </div>
 
 </div>
+<script type="text/javascript">
 
+</script>
 
 </section>
 

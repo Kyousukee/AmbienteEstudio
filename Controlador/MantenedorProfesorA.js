@@ -79,6 +79,17 @@
 			$scope.CrgCur();
 		/*FIN DE CARGAR COMBO CURSOS*/
 
+		self.limpiar = function(){
+ 			//console.log('Hola');
+ 			self.txtiddocA = "";
+ 			$scope.CrgCur();
+ 			$scope.CrgPro();
+ 			$scope.cboasignaturacar= "";
+ 			$scope.readonly                =false;
+			$scope.actualizar_readonly     =true;
+			$scope.grabar_readonly         =false;
+	    }
+
 
 		/*INICIO DE CARGAR COMBO CURSOS*/
         self.cargarCursos2 = function(){
@@ -213,6 +224,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstDocA();
@@ -331,6 +343,7 @@
 			 		}else{
 			 			document.getElementById("modal_correc").style.display = "block";
 			 			$scope.correctmesage = messageOfData;
+			 			self.limpiar();
 			 		}
 
 					$scope.LstDocA();
